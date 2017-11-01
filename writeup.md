@@ -24,11 +24,23 @@ This writing is for Term3 Path Planning project.  All minimum requirements menti
     	* Staying in same lane: If cost for staying in same lane and changing to other lane is same, it might cause swings. Therefore, boasting car if it stays in same lane will help.
     Now, after finding lane based on above cost, to avoid frequent car change, cost averaging will be done 
     
+    Best cost is maximum cost(not minimum cost).
+    
     NOTE: Even though, lane identification done based on average cost, one final check will be done to make sure no front/back car is within 10 m to avoid collision. If found, lane change guidance provided by cost function will be overridden and car will stay in same lane.
     
   * **Further trajectory point generation:** Further trajectory points will be generate using **spline** library.
   
   
+ ## Functions written 
+ 
+ All functions are written in main.cpp instead of creating seperate classes
+ 
+  * **getLaneNumber()** - Function take d as input and provides lane number
+  * **closestVehicle()** - Function uses sesor fusion information, car's lane, car's s and flag specifying whether closeness required for front or rear car.
+  * **costFunction()** - Function uses car's s, sensor fusion information, current lane and car speed to generate Cost.   
+  * **getNextStateLaneFactor()** - Function first called after initial trajectory points generation(from previous path). This function identify offset value to adjust the next STATE's lane.
+  * **main()** - Main function to start.
+      
 ### Below is link video of car driving 6.72 miles.
  
   [Car Traveling 6.72 miles](https://youtu.be/pMbigmGmz0A)
@@ -39,12 +51,12 @@ This writing is for Term3 Path Planning project.  All minimum requirements menti
  * Instead of spline library JERK MINIMIZATION POLYNOMIAL can be utilized.
  * two cost functions. 1) Behavior planning cost(not used)  2) Trajectory generation cost(current used). Behvior planning cost function not used primarily because of "scheduling compute time". Behavior module inputs were provided less frequent than localization module input for generating trajectories.
  * Trajectories can be further sent to MPC module.
- 
- 
+ * Further availability of time might have allowed to create project object oriented object design. Like
+ 	* Vehicle class.
+ 	* Cost class - with two subclasses (Behvior planning cost and Trajectory cost).
+ 	* Utilitity class.
+ 	* MPC class
     
-
-
-
    
 ### Simulator.
 You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases).
