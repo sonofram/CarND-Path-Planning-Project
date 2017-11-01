@@ -29,6 +29,7 @@ This writing is for Term3 Path Planning project.  All minimum requirements menti
     NOTE: Even though, lane identification done based on average cost, one final check will be done to make sure no front/back car is within 10 m to avoid collision. If found, lane change guidance provided by cost function will be overridden and car will stay in same lane.
     
   * **Further trajectory point generation:** Further trajectory points will be generate using **spline** library.
+  * ********NOTE: This step was mostly replica of Path Planning Walk-Thru Session***********
   
   
  ## Functions written 
